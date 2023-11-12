@@ -9,6 +9,12 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const startsWithLetter = /^[a-zA-Z]/.test(title);
+
+    if (!startsWithLetter) {
+      alert("Please enter a string starting with a letter");
+      return;
+    }
     slug = mySlugify(title);
     const updates = { title, slug };
     setMySlugs([...mySlugs, updates]);
@@ -35,8 +41,8 @@ function App() {
             {mySlugs.map((data, index) => (
               <div key={index}>
                 <p>{index + 1}</p>
-                <h1>{data.title}</h1>
-                <h1>{data.slug}</h1>
+                <h1 className="text-2xl font-bold">{data.title}</h1>
+                <p>{data.slug}</p>
               </div>
             ))}
           </div>
